@@ -10,6 +10,8 @@ This file follows the best practices from [keepachangelog.com](http://keepachang
 
 ### Added
 
+- Added configuration for trusted proxies [#3040](https://github.com/sharetribe/sharetribe/pull/3040)
+
 ### Changed
 
 ### Deprecated
@@ -20,7 +22,7 @@ This file follows the best practices from [keepachangelog.com](http://keepachang
 
 ### Security
 
-## [7.0.0] - 2017-06-09
+## [7.0.0] - 2017-08-08
 
 ### Changed
 
