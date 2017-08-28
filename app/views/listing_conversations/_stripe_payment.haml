@@ -11,7 +11,7 @@
     .col-4
       %label= t(".address_country")
     .col-8
-      = select_tag 'shipping_address[country_code]', options_for_select(StripeService::Store::StripeAccount::COUNTRY_NAMES), {}
+      = select_tag 'shipping_address[country_code]', options_for_select(CountryI18nHelper.all_translated_countries, @current_community.country), {}
   .row
     .col-4
       %label= t(".address_state")
