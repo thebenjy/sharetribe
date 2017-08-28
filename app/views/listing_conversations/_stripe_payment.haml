@@ -48,7 +48,7 @@
     .col-12
       #card-element
       #card-errors{role: "alert"}
-  .row
+  .row.stripe-payment
     .col-12.payment-button-wrapper.paypal-button-wrapper
       = button_tag t("stripe_accounts.add_and_pay"), id: "send-add-card", class: 'checkout-with-stripe-button'
 
