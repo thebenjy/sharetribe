@@ -541,6 +541,11 @@ en:
       you_cannot_use_online_payments: "You cannot use online payments in %{country_name} with %{currency}. Please choose a different currency or %{support_link} to change your country. You can read more about supported countries and currencies %{help_link}. In the future we might add more payment providers and support more currencies"
       which_to_choose: "Which one to choose?"
       you_can_use_stripe_or_paypal: "You can use either Stripe, PayPal or both as your payment providers. %{choose_link}"
+      you_can_use_stripe_only: "You can use Stripe as your payment provider. %{read_more_link}"
+      read_more_stripe: "Read more about Stripe payments."
+      you_can_use_paypal_only: "You can use PayPal as your payment provider. %{read_more_link}"
+      read_more_paypal: "Read more about PayPal payments."
+
       read_more_about_paypal_and_stripe: "Read more about online payments, Stripe and PayPal"
       general_settings_updated: Payment system general settings updated
       transaction_fee_settings_updated: Transaction fee settings updated 
@@ -1755,15 +1760,14 @@ en:
       read_more: View.
     stripe_payment:
       payment: Payment
-      pay_with_card: Pay with credit card
+      pay_with_card: Pay with credit or debit card
       address: Shipping address
       address_country: Country
       address_city: City
-      address_state: State or province
-      address_street1: Street
-      address_postal_code: Postal code
-      address_name: Name
-      address_phone: Phone
+      address_state: State
+      address_street1: Street address line 1
+      address_street2: Street address line 2 
+      address_postal_code: ZIP / Postal code
 
   mapview:
     index:
@@ -1855,6 +1859,7 @@ en:
     paypal_permission_granted_summary: "Permission for transaction fees granted"
   paypal:
     pay_with_paypal: "Proceed to payment"
+    checkout_with: "Checkout with"
     or_pay_with_paypal: "or"
     checkout_with_paypal: "Checkout with PayPal"
     cancel_succesful: "PayPal payment succesfully canceled"
@@ -2215,6 +2220,8 @@ en:
     quantity: "Quantity: %{quantity}"
     unit_price: "Unit price: %{unit_price}"
     total: "Total:"
+    total_to_pay: "Payment total:"
+
   unit:
     day: day
     days: days
@@ -2307,6 +2314,7 @@ en:
     stripe_credit_card: "Credit card"
     paypal: PayPal
     paypal_connected: PayPal account connected successfully!
+    paypal_connected_give_permission: "To complete setup and start receiving funds to your PayPal account <%{email}>, please grant permission to charge a transaction fee."
 
     form_new:
       need_info: We need some information about you to be able to send you money.
@@ -2345,9 +2353,9 @@ en:
     paypal: PayPal
     credit_card_bank_details: To accept credit card payments you need to provide yout bank details so we can move money to your bank account.
     add_bank_details: Add bank details
-    can_accept_stripe_and_paypal: You can accept payment either through credit card, through PayPal or both
-    to_accept_paypal: To accept PayPal payments, you need to connect your PayPal acclount so we can move money there
+    can_accept_stripe_and_paypal: You can accept payment either through credit card, through PayPal or both.
+    to_accept_paypal: To accept PayPal payments, you need to connect your PayPal account so we can move money there.
     connect_paypal: Connect PayPal account
     wrong_setup: "There is something wrong with the payment system setup in this marketplace. Please contact the marketplace owners."
-    invalid_bank_account_number: "Please check that your bank account is entered correctly and matches your country"
+    invalid_bank_account_number: "Please check that your bank account is entered correctly and matches your country."
     invalid_postal_code: "Invalid postal code for %{country}"
