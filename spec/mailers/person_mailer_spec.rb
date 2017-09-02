@@ -129,7 +129,9 @@ describe PersonMailer, type: :mailer do
     @community = FactoryGirl.create(:community)
     email = MailCarrier.deliver_now(PersonMailer.new_feedback(@feedback, @community))
     assert !ActionMailer::Base.deliveries.empty?
-    assert_equal APP_CONFIG.feedback_mailer_recipients.split(", "), email.to
+    # puts "APP_CONFIG.feedback_mailer_recipients " + APP_CONFIG.feedback_mailer_recipients.to_s
+    # puts "APP_CONFIG.feedback_mailer_recipients.split(", "): " + APP_CONFIG.feedback_mailer_recipients.split(", ").to_s
+    assert_equal APP_CONFIG.feedback_mailer_recipients.split(", "), [email.to]
   end
 
   it "should send email to community admins of new feedback if that setting is on" do
