@@ -122,6 +122,7 @@ group :development do
   gem 'web-console', '~> 3.5.1'
   gem 'awesome_print', '~> 1.7.0'
   gem 'binding_of_caller'
+  gem 'foreman'
 end
 
 group :test do
@@ -147,6 +148,7 @@ end
 
 group :development, :test do
   gem 'pry-byebug'
+  gem 'seed_dump'
 end
 
 
