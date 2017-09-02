@@ -60,7 +60,8 @@ Rails.application.configure do
   config.cache_store = :memory_store, { :namespace => "sharetribe-test"}
 
   config.active_support.test_order = :random
-  config.active_support.deprecation = :stderr
+  # config.active_support.deprecation = :stderr
+  config.active_support.deprecation = :log
 
   # We don't need schema dumps in this environment
   config.active_record.dump_schema_after_migration = false
