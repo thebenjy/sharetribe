@@ -98,6 +98,7 @@ gem "request_store", '~> 1.3.2'
 # ActionMailer dependency that needs forced update for security patch
 gem 'mail', '~> 2.6.6.rc1'
 
+
 group :staging, :production do
   gem 'newrelic_rpm', '~> 4.2.0.334'
   gem 'rails_12factor', '~> 0.0.3'
@@ -106,6 +107,10 @@ end
 group :development, :test do
   gem 'rubocop', '~> 0.49.1', require: false
   gem 'factory_girl_rails', '~> 4.8.0'
+  gem 'pry-byebug'
+  gem 'seed_dump'
+  gem 'dotenv-rails'
+  gem 'dotenv-heroku'
 end
 
 group :development, :staging do
@@ -147,10 +152,6 @@ group :test do
   gem 'rspec_junit_formatter'
 end
 
-group :development, :test do
-  gem 'pry-byebug'
-  gem 'seed_dump'
-end
 
 
 gem 'therubyracer', '~> 0.12.3', platforms: :ruby
