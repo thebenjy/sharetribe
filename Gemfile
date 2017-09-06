@@ -109,8 +109,8 @@ group :development, :test do
   gem 'factory_girl_rails', '~> 4.8.0'
   gem 'pry-byebug'
   gem 'seed_dump'
-  gem 'dotenv-rails'
 end
+gem 'dotenv-rails'
 gem 'dotenv-heroku'
 
 group :development, :staging do
