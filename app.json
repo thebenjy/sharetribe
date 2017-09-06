@@ -1,0 +1,62 @@
+// heroku git:remote -a XXX
+// git remote rename heroku heroku
+// heroku addons:destroy heroku-postgresql
+// git push heroku master
+// git push heroku testbranch:master
+{
+  "name": "Sell Kids Old Projects",
+  "description": "A place to list things that could be use by other parents for school projects, costumes etc.",
+  "keywords": ["marketplace", "kids", "children", "costume", "projects"],
+  "website": "https://ellkidsoldprojects1.herokuapp.com/",
+  "repository": "https://benforrestcc@bitbucket.org/benforrestcc/sharetribe.git",
+//  "success_url": "/welcome",
+  "scripts": {
+    "postdeploy": "bundle exec rake bootstrap"
+  },
+  "env": {
+    "WEB_CONCURRENCY": {
+      "description": "The number of processes to run.",
+      "value": "5"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 2,
+      "size": "Performance-M"
+    }
+  },
+  "image": "heroku/ruby",
+  "addons": [
+    "memcachier",
+    {
+      "plan": "dev"
+    },
+    "cleardb",
+    {
+      "plan": "ignite"
+    },
+    "flying_sphinx",
+    {
+      "plan": "wooden"
+    },
+    "scheduler", { "plan": "standard" }
+  ],
+  "environments": {
+    "test": {
+      "env": {
+        "SECRET_TOKEN": "test-secret"
+        },
+      "scripts": {
+        "test": "bundle exec rake test"
+      }
+    }
+  }
+}
+
+ // heroku config:get CLEARDB_DATABASE_URL
+
+ //  heroku addon:open scheduler
+// add
+//  flying-sphinx index  hourly
+// rails runner "CommunityMailer.deliver_community_updates"  Daily
+// rake sharetribe:delete_expired_auth_tokens  Daily
