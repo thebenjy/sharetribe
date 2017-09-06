@@ -5,8 +5,7 @@ default: &default_settings
   # The community subdomains will be added to this top domain.
   # NOTE: Do not include http(s) here, or subdomains, just the top level domain, like "sharetribe.com" for example
   # this not working
-  # domain: <%= ENV['DOMAIN'] %>
-  domain: localhost
+  domain: <%= ENV['DOMAIN'] %>
 
   # If you want to make logins work across different subdomains you should put here the domain where you are running Sharetribe.
   # practically in most cases the same value as in "domain:"
@@ -436,7 +435,8 @@ production: &production_settings
   <<: *default_settings
 
   eager_load: true
-
+  # TBC how we use this on heroku
+  # always_use_ssl: true
   log_level: INFO
 
 staging:
@@ -447,6 +447,14 @@ staging:
 
 development:
   <<: *default_settings
+
+  domain: lvh.me:3000
+  sharetribe_mail_from_address: 'noreply@example.org'
+  feedback_mailer_recipients: 'noreply@example.org'
+  google_analytics_key: 
+  sales_email: 'sales@example.org'
+  support_email: 'support@example.org'
+  knowledge_base_url: 'lvh.me:3000i/kx'
 
   # Usually it's easier to run development without SSL
   always_use_ssl: false
