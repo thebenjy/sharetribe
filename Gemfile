@@ -110,8 +110,8 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'seed_dump'
   gem 'dotenv-rails'
-  gem 'dotenv-heroku'
 end
+gem 'dotenv-heroku'
 
 group :development, :staging do
   gem 'meta_request', '~> 0.4.3'
