@@ -110,8 +110,8 @@ class Rack::Attack
             match_type: req.env['rack.attack.match_type'],
             match_data: req.env['rack.attack.match_data'],
             user_agent: req.env['HTTP_USER_AGENT'],
-            referer: req.env['REQUEST_URI']
-    }
+            referer: req.env['SERVER_NAME']
+           }
     Rails.logger.info(data.to_json)
   end
 
