@@ -1,0 +1,25 @@
+#!/bin/bash
+set -x
+# run local
+
+
+# set of db
+# bundle exec rake db:create db:structure:load
+
+mysql.server start
+
+# assumes .env
+
+# sphinx index
+bundle exec rake ts:index
+
+bundle exec rake ts:start
+
+foreman start -f Procfile.static
+
+echo do not forget in another console run
+echo bundle exec rake jobs:work
+echo ... in another run
+echo mailcatcher
+echo
+echo available at: http://lvh.me:3000
