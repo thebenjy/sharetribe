@@ -3,6 +3,11 @@
 // heroku addons:destroy heroku-postgresql
 // git push heroku master
 // git push heroku testbranch:master
+// git push heroku opreations_running_local:master
+//
+// add db : heroku addons:create cleardb:ignite -a sellkidsoldprojects1
+// heroku config:get CLEARDB_DATABASE_URL
+// heroku config:add DATABASE_URL='mysql2://b85e27f5e3d9f4:26f2fa7b@us-cdbr-iron-east-05.cleardb.net/heroku_a48153532d41193?reconnect=true'
 {
   "name": "Sell Kids Old Projects",
   "description": "A place to list things that could be use by other parents for school projects, costumes etc.",
@@ -60,3 +65,5 @@
 //  flying-sphinx index  hourly
 // rails runner "CommunityMailer.deliver_community_updates"  Daily
 // rake sharetribe:delete_expired_auth_tokens  Daily
+
+// rake config:push\[$HOME/Documents/private/sharetribe_private/dev.sharetribe.docker.env\]
