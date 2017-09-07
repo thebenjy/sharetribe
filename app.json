@@ -8,6 +8,10 @@
 // add db : heroku addons:create cleardb:ignite -a sellkidsoldprojects1
 // heroku config:get CLEARDB_DATABASE_URL
 // heroku config:add DATABASE_URL='mysql2://b85e27f5e3d9f4:26f2fa7b@us-cdbr-iron-east-05.cleardb.net/heroku_a48153532d41193?reconnect=true'
+
+// set heroku variables (assuming .env)
+// rake config:push
+
 {
   "name": "Sell Kids Old Projects",
   "description": "A place to list things that could be use by other parents for school projects, costumes etc.",
@@ -46,6 +50,11 @@
     },
     "scheduler", { "plan": "standard" }
   ],
+   "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
   "environments": {
     "test": {
       "env": {
