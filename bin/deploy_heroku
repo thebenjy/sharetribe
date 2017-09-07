@@ -11,6 +11,7 @@ APP="-a ${APPNAME}"
 
 heroku addons:destroy heroku-postgresql ${APP}
 heroku addons:create memcachier:dev ${APP}
+heroku addons:create papertrail:choklad ${APP}
 
 if [[ ! -f .env ]]; then
   echo 'no .env'
