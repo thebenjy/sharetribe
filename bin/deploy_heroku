@@ -1,0 +1,51 @@
+#!/bin/bash
+# deploy heroku
+
+APPNAME=blah
+
+# new first time
+herok create ${APPNAME}
+heroku git:remote ${APP}
+
+APP="-a ${APPNAME}"
+
+heroku addons:destroy heroku-postgresql ${APP}
+heroku addons:create memcachier:dev ${APP}
+
+if [[ ! -f .env ]]; then
+  echo 'no .env'
+  exit 2
+fi
+
+echo "pushing .env config"
+rake config:push
+
+heroku buildpacks:add --index 1 heroku/nodejs ${APP}
+heroku buildpacks:add --index 2 heroku/heroku-buildpack-ruby  ${APP}
+
+# heroku addons:create ssl:endpoint
+
+heroku addons:create newrelic:wayne ${APP}
+
+echo 'open new relic: ' # heroku addon:open newrelic
+
+echo 'no sphinx'
+# heroku addons:create flying_sphinx:ceramic ${APP}
+
+heroku addon:create cleardb:ignite ${APP}
+
+RES=`heroku config:get CLEARDB_DATABASE_URL`
+NEW_SQL=`echo ${RES} | sed s/mysql/mysql2/g`
+
+heroku config:add DATABASE_URL=\'${NEW_SQL}\' ${APP}
+
+heroku run bundle exec rake db:schema:load  ${APP}
+
+heroku addons:create scheduler:standard  ${APP}
+
+echo 'open schedule to add ' # heroku addon:open newrelic
+echo flying-sphinx index  hourly
+echo  rails runner "CommunityMailer.deliver_community_updates"  Daily
+echo rake sharetribe:delete_expired_auth_tokens  Daily
+
+git push heroku master
