@@ -34,6 +34,10 @@
       "size": "Performance-M"
     }
   },
+  "engines": {
+    "node": "7.8",
+    "npm": "4.2.0"
+  }
   "image": "heroku/ruby",
   "addons": [
     "memcachier",
