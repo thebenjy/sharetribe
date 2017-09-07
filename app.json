@@ -51,7 +51,7 @@
     "scheduler", { "plan": "standard" }
   ],
    "buildpacks": [
-    {"url": "heroku/nodejs"}
+    {"url": "heroku/nodejs"},
     {"url": "heroku/heroku-buildpack-ruby"}
   ]
   "environments": {
