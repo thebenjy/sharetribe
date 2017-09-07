@@ -33,7 +33,7 @@ echo 'open new relic: ' # heroku addon:open newrelic
 echo 'no sphinx'
 # heroku addons:create flying_sphinx:ceramic ${APP}
 
-heroku addon:create cleardb:ignite ${APP}
+heroku addons:create cleardb:ignite ${APP}
 
 RES=`heroku config:get CLEARDB_DATABASE_URL`
 NEW_SQL=`echo ${RES} | sed s/mysql/mysql2/g`
