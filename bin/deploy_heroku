@@ -1,52 +1,69 @@
 #!/bin/bash
 # deploy heroku
+set -x
+set -e
 
-APPNAME=blah
-
-# new first time
-herok create ${APPNAME}
-heroku git:remote ${APP}
-
+APPNAME=sttestapp2
 APP="-a ${APPNAME}"
 
-heroku addons:destroy heroku-postgresql ${APP}
-heroku addons:create memcachier:dev ${APP}
-heroku addons:create papertrail:choklad ${APP}
+# new first time
+heroku create ${APPNAME}
 
-if [[ ! -f .env ]]; then
-  echo 'no .env'
+# note to destroy: heroku apps:destroy -a ${APPNAME} --confirm ${APPNAME}
+
+heroku git:remote ${APP}
+
+# not needed currently as heroku doesn't do postgres automatically
+# heroku addons:destroy heroku-postgresql ${APP}
+
+
+if [[ ! -f ".env" ]]; then
+  echo 'no .env!'
   exit 2
 fi
 
 echo "pushing .env config"
 rake config:push
+# override the domain variable with the final domain for this app
+heroku config:set DOMAIN=${APPNAME}.herokuapp.com ${APP}
 
 heroku buildpacks:add --index 1 heroku/nodejs ${APP}
-heroku buildpacks:add --index 2 heroku/heroku-buildpack-ruby  ${APP}
+heroku buildpacks:add --index 2 heroku/ruby  ${APP}
+
+heroku run gem install bundler 
+git push heroku master
+
+heroku addons:create memcachier:dev ${APP}
+heroku addons:create papertrail:choklad ${APP}
 
 # heroku addons:create ssl:endpoint
 
-heroku addons:create newrelic:wayne ${APP}
+# heroku addons:create newrelic:wayne ${APP}
 
-echo 'open new relic: ' # heroku addon:open newrelic
+# echo 'open new relic: ' # heroku addon:open newrelic
 
-echo 'no sphinx'
-# heroku addons:create flying_sphinx:ceramic ${APP}
 
 heroku addons:create cleardb:ignite ${APP}
 
 RES=`heroku config:get CLEARDB_DATABASE_URL`
 NEW_SQL=`echo ${RES} | sed s/mysql/mysql2/g`
 
-heroku config:add DATABASE_URL=\'${NEW_SQL}\' ${APP}
+heroku config:add DATABASE_URL=${NEW_SQL} ${APP}
+
+
+echo 'no sphinx for this test'
+# heroku addons:create flying_sphinx:ceramic ${APP}
+
+
 
 heroku run bundle exec rake db:schema:load  ${APP}
 
-heroku addons:create scheduler:standard  ${APP}
 
-echo 'open schedule to add ' # heroku addon:open newrelic
-echo flying-sphinx index  hourly
-echo  rails runner "CommunityMailer.deliver_community_updates"  Daily
-echo rake sharetribe:delete_expired_auth_tokens  Daily
+echo 'not adding scheduled jobs for now....'
 
-git push heroku master
+# heroku addons:create scheduler:standard  ${APP}
+
+# echo 'open schedule to add ' # heroku addon:open newrelic
+# echo flying-sphinx index  hourly
+# echo rails runner "CommunityMailer.deliver_community_updates"  Daily
+# echo rake sharetribe:delete_expired_auth_tokens  Daily
