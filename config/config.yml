@@ -7,6 +7,9 @@ default: &default_settings
   # this not working
   domain: <%= ENV['DOMAIN'] %>
 
+  secret_key_base: <%= ENV['SECRET_TOKEN'> %>
+
+
   # If you want to make logins work across different subdomains you should put here the domain where you are running Sharetribe.
   # practically in most cases the same value as in "domain:"
   # The session cookies will apply for the whole domain. If this is not needed you can leave this empty.
