@@ -7,7 +7,7 @@ default: &default_settings
   # this not working
   domain: <%= ENV['DOMAIN'] %>
 
-  secret_key_base: <%= ENV['SECRET_TOKEN'> %>
+  secret_key_base: <%= ENV['SECRET_TOKEN'] %>
 
 
   # If you want to make logins work across different subdomains you should put here the domain where you are running Sharetribe.
